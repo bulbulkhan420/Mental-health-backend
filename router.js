@@ -1,0 +1,16 @@
+let express=require('express');
+let route=express.Router();
+let Controller=require('./Controller.js');
+let {student,teacher}=require('./Database.js');
+let JWTtoken=require('./JWTtoken.js');
+route.get('/',Controller.main);
+route.post('/:person/register',Controller.registration);
+route.post('/:person/login',Controller.login);
+route.get('/student/info/:id',JWTtoken.verify,Controller.getstudent);
+route.get('/teacher/info/:id',JWTtoken.verify,Controller.getteacher);
+route.get('/admin/info',JWTtoken.verify,Controller.getadmin);
+route.get('/student/ap/:id',Controller.astudent);
+route.get('/student/rj/:id',Controller.rstudent);
+route.get('/teacher/ap/:id',Controller.ateacher);
+route.get('/teacher/rj/:id',Controller.rteacher);
+module.exports={route};
