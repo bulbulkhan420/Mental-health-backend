@@ -16,4 +16,11 @@ let ad=new mongoose.Schema({
     password:String
 });
 let admin=mongoose.model('admin',ad);
-module.exports={student,teacher,admin};
+let mess=new mongoose.Schema({
+    tid:String,
+    sid:String,
+    message:Array,
+    
+})
+let message=mongoose.model('message',mess);
+module.exports={student,teacher,admin,message};

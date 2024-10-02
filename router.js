@@ -3,6 +3,7 @@ let route=express.Router();
 let Controller=require('./Controller.js');
 let {student,teacher}=require('./Database.js');
 let JWTtoken=require('./JWTtoken.js');
+let Message=require('./Message.js')
 route.get('/',Controller.main);
 route.post('/:person/register',Controller.registration);
 route.post('/:person/login',Controller.login);
@@ -13,4 +14,9 @@ route.get('/student/ap/:id',Controller.astudent);
 route.get('/student/rj/:id',Controller.rstudent);
 route.get('/teacher/ap/:id',Controller.ateacher);
 route.get('/teacher/rj/:id',Controller.rteacher);
+route.get('/all/teacher/list',Controller.allteacher);
+route.post('/get/message',Message.messagelist);
+route.post('/send/student',Message.sendstudent);
+route.post('/send/teacher',Message.sendteacher);
+route.get('/all/student/list/:id',Message.studentlist);
 module.exports={route};

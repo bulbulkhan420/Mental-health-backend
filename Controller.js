@@ -39,6 +39,8 @@ let login=async (req,res)=>{
   let person=req.params.person;
   
   let data=req.body;
+  console.log(data);
+  console.log(person);
   if(person=="student"){
     let re=await student.findOne({id:data.id,verify:true});
     if(re){
@@ -189,4 +191,24 @@ let rteacher=async (req,res)=>{
         ok:true
     });
 }
-module.exports={main,registration,login,getstudent,getteacher,getadmin,astudent,ateacher,rteacher,rstudent};
+
+let allteacher=async (req,res)=>{
+    let v=await teacher.find({});
+    res.json({
+        ok:true,
+        list:v
+    })
+}
+module.exports={
+    main,
+    registration,
+    login,
+    getstudent,
+    getteacher,
+    getadmin,
+    astudent,
+    ateacher,
+    rteacher,
+    rstudent,
+    allteacher
+};
